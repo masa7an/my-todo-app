@@ -555,3 +555,38 @@ input[type="checkbox"]:checked+.custom-checkbox svg {
 .history-list:not(:empty)+.history-empty {
     display: none;
 }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .input-group {
+        flex-wrap: wrap;
+    }
+
+    select#category-select {
+        flex: 1; /* Expand category select on mobile */
+        max-width: none;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+    }
+
+    input[type="text"] {
+        flex: 1 1 100%; /* Force input to take full width */
+        border-bottom: 1px solid var(--border); /* Visually separate from button if needed, though they are wrapped */
+    }
+
+    button#add-btn {
+        flex: 1 1 100%; /* Force button to take full width */
+        justify-content: center;
+    }
+    
+    /* Adjust input-group gap/padding for stacked layout */
+    .input-group {
+        gap: 8px;
+        padding: 12px;
+    }
+}
