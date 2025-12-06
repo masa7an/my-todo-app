@@ -1,0 +1,557 @@
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --danger: #ef4444;
+    --radius: 12px;
+}
+
+body {
+    --bg-body: #1e1e1e;
+    --bg-card: #2d2d2d;
+    --text-main: #ffffff;
+    --text-muted: #a1a1aa;
+    --border: #404040;
+    --bg-input: #3f3f46;
+    --bg-input-focus: #52525b;
+}
+
+body.light-theme {
+    --bg-body: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --bg-input: #ffffff;
+    --bg-input-focus: #eff6ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 0 20px;
+}
+
+header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+#theme-toggle:hover {
+    background-color: var(--bg-card);
+    color: var(--primary);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    background: var(--bg-card);
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+}
+
+select#category-select {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 0 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    border-right: 1px solid var(--border);
+    max-width: 100px;
+}
+
+select#category-select option {
+    background: var(--bg-card);
+    color: var(--text-main);
+}
+
+input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-main);
+    background: transparent;
+}
+
+/* Category Badges */
+.category-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.category-none {
+    background-color: #52525b;
+    color: #e4e4e7;
+}
+
+.category-work {
+    background-color: #2563eb;
+    color: #dbeafe;
+}
+
+.category-personal {
+    background-color: #10b981;
+    color: #d1fae5;
+}
+
+.category-shopping {
+    background-color: #fef08a;
+    color: #854d0e;
+}
+
+.category-important {
+    background-color: #dc2626;
+    color: #fee2e2;
+}
+
+.category-other {
+    background-color: #431407;
+    color: #fce7f3;
+}
+
+button#add-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button#add-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+button#add-btn:active {
+    transform: scale(0.98);
+}
+
+.todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.todo-item {
+    background: var(--bg-card);
+    padding: 16px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+    border: 1px solid transparent;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.todo-item.completed {
+    background-color: #334155;
+    opacity: 0.8;
+}
+
+.todo-item.dragging {
+    opacity: 0.5;
+    border: 2px dashed var(--primary);
+    background-color: var(--bg-card);
+}
+
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.checkbox-wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.custom-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    pointer-events: none;
+}
+
+.custom-checkbox svg {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s;
+    color: white;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+input[type="checkbox"]:checked+.custom-checkbox {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+input[type="checkbox"]:checked+.custom-checkbox svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.todo-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    background-color: #450a0a;
+    color: var(--danger);
+}
+
+.edit-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: all 0.2s;
+    margin-right: 4px;
+}
+
+.todo-item:hover .edit-btn {
+    opacity: 1;
+}
+
+.edit-btn:hover {
+    background-color: var(--bg-body);
+    color: var(--primary);
+}
+
+.edit-input {
+    flex: 1;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-main);
+    background: var(--bg-input);
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    padding: 4px 8px;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.edit-input:focus {
+    background: var(--bg-input-focus);
+}
+
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 40px;
+    display: none;
+}
+
+.empty-state:not(.hidden) {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Undo Notification */
+.undo-notification {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    min-width: 300px;
+    justify-content: space-between;
+}
+
+.undo-notification.hidden {
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#undo-btn {
+    background: transparent;
+    border: none;
+    color: #60a5fa;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+#undo-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* History Panel */
+.history-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 900;
+}
+
+.history-toggle-btn:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.history-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.history-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: var(--bg-card);
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.history-panel.open {
+    transform: translateX(0);
+}
+
+.history-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.history-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+#close-history-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#close-history-btn:hover {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-item {
+    background-color: var(--bg-body);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.history-item span {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: line-through;
+}
+
+.restore-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.restore-btn:hover {
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+.history-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px 20px;
+    font-size: 0.9rem;
+}
+
+.history-list:not(:empty)+.history-empty {
+    display: none;
+}

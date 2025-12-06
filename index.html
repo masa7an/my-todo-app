@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do リスト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>やることリスト</h1>
+                <button id="theme-toggle" aria-label="テーマ切替">
+                    <!-- Default to Sun icon (for dark mode) or Moon? Logic will handle initial state. -->
+                    <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 3V4M12 20V21M4 12H3M21 12H20M5.63604 5.63604L6.34315 6.34315M17.6569 17.6569L18.364 18.364M5.63604 18.364L6.34315 17.6569M17.6569 6.34315L18.364 5.63604M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+            <p id="date-display"></p>
+        </header>
+
+        <div class="input-group">
+            <select id="category-select" aria-label="カテゴリ選択">
+                <option value="none">タグ色変更</option>
+                <option value="work">仕事</option>
+                <option value="personal">私用</option>
+                <option value="shopping">買い物</option>
+                <option value="important">重要</option>
+                <option value="other">その他</option>
+            </select>
+            <input type="text" id="todo-input" placeholder="やることは？（ここに入力）" autocomplete="off">
+            <button id="add-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                追加
+            </button>
+        </div>
+
+        <ul id="todo-list" class="todo-list">
+            <!-- Tasks will be added here -->
+        </ul>
+
+        <div class="empty-state" id="empty-state">
+            <p>タスクはまだありません。上から追加してください！</p>
+        </div>
+    </div>
+
+    <div id="undo-notification" class="undo-notification hidden">
+        <span>タスクを削除しました</span>
+        <button id="undo-btn">元に戻す</button>
+    </div>
+
+    <button id="history-toggle-btn" class="history-toggle-btn" aria-label="履歴を表示">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 12 L12 8.5" />
+                <path d="M12 12 L14.5 12" />
+                <!-- Arc: Start at 3 o'clock (21.5, 12), go CCW to 6 o'clock (12, 21.5) -->
+                <path d="M21.5 12 A 9.5 9.5 0 1 0 12 21.5" />
+                <!-- Arrow head at 6 o'clock (12, 21.5), pointing Right -->
+                <path d="M10.3 19.8 L 12 21.5 L 10.3 23.2" />
+            </g>
+        </svg>
+    </button>
+
+    <div id="history-panel" class="history-panel">
+        <div class="history-header">
+            <h2>削除履歴</h2>
+            <button id="close-history-btn" aria-label="履歴を閉じる">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+        <ul id="history-list" class="history-list">
+            <!-- Deleted tasks will be listed here -->
+        </ul>
+        <div id="history-empty" class="history-empty">履歴はありません</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
